@@ -5,18 +5,20 @@ import help from "../views/help.vue";
 import Blog from "../components/BlogPosts.vue";
 import Profile from "../views/Profile.vue";
 import Orders from "../views/Orders.vue";
-import ChangePassword from "../views/ChangePassword.vue";
 import PersonalInfo from "../views/PersonalInfo.vue";
 import jumpsuits from "../views/jumpsuits.vue";
 import dresses from "../views/dresses.vue";
 import blouses from "../views/blouses.vue";
 import skirts from "../views/skirts.vue";
+import addproduct from "../views/addproduct.vue";
 import coats from "../views/coats.vue";
 import pants from "../views/pants.vue";
 import sweatshirts from "../views/sweatshirts.vue";
 import blazers from "../views/blazers.vue";
-import newprod from "../views/newprod.vue";
+import brands from "../views/brands.vue";
+import brandprofile from "../views/brandprofile.vue";
 import test from "../views/test.vue";
+
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import VueSession from 'vue-session';
@@ -34,6 +36,21 @@ const routes = [
     path: "/jumpsuits",
     name: "jumpsuits",
     component: jumpsuits
+    }
+    ,{
+        path: "/brands",
+        name: "brands",
+        component: brands
+    }
+    ,  {
+        path: "/brandprofile",
+        name: "brandprofile",
+        component: brandprofile
+    },
+     {
+        path: "/addproduct",
+        name: "addproduct",
+        component: addproduct
     },
     {
         path: "/test",
@@ -70,11 +87,7 @@ const routes = [
     name: "sweatshirts",
     component: sweatshirts
   },
-  {
-    path: "/newprod",
-    name: "newprod",
-    component: newprod
-  },
+ 
   {
     path: "/blazers",
     name: "blazers",
@@ -111,11 +124,7 @@ const routes = [
       name: "orders",
       component: Orders
   },
-  {
-      path: "/changepassword",
-    name: "changepassword",
-    component: ChangePassword
-  },
+ 
   {
     path: "/personalinfo",
     name: "personalinfo",

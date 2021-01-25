@@ -14,24 +14,29 @@
                   <i><font-awesome-icon :icon="['fas', 'home']" /></i>
               </a>
           </router-link>
-          
+
           <router-link to="/blog" tag="li">
               <a class="link1">
                   <i><font-awesome-icon :icon="['fas', 'female']" /></i>
               </a>
           </router-link>
-         
-          
-          <!-- <router-link to="/help" tag="li">
-      <a class="link1"
-        ><i><font-awesome-icon :icon="['fas', 'shopping-cart']"/></i
-      ></a>
-    </router-link>-->
-          <router-link to="/test" tag="li">
-              <a class="link1">
+          <li>
+              <a @click="check()" class="cart">
+                  <span id="quantityy"> {{x}}</span>
                   <i><font-awesome-icon :icon="['fas', 'shopping-cart']" /></i>
               </a>
-          </router-link>
+          </li>
+
+          <!--  <router-link to="/help" tag="li">
+
+        <div class="cart">
+            <span id="quantityy"> {{x}}</span>
+            <i><font-awesome-icon :icon="['fas', 'shopping-cart']" /></i>
+        </div>
+    </router-link>-->
+
+
+
 
           <li>
               <div class="container h-100">
@@ -61,53 +66,79 @@
               </router-link>
           </div>
           <div v-else>
-              
-                  <div class="btn-login" id="btn">
-                      <router-link to="/about">
-                          <a href="">Login</a>
-                      </router-link>
-                  </div>
-              
+
+              <div class="btn-login" id="btn">
+                  <router-link to="/about">
+                      <a href="">Login</a>
+                  </router-link>
+              </div>
+
           </div>
-          
+
       </ul>
     </div>
   </div>
 </template>
 <script>
 
+    import axios from "axios";
     export default {
 
         name: "AppHeader",
         data: function () {
             return {
                 users: "",
-                loading: false
+                loading: false,
+                x:0
             }
         },
         methods: {
             getuser: function () {
                 this.loading = true;
-                if (localStorage.getItem('users') != '') {
-                  //  $('#btn').css('display', 'none');
-                  //  $('#profile').css('display', 'block');
+              
+                
+            },
 
-                    this.users = localStorage.getItem('users');
+            check: function () {
+                if (this.x > 0) {
+
+                    this.$router.push({ name: 'Help' })
+
                 }
                 else {
-                  //  $('#btn').css('display', 'block');
-                  //  $('#profile').css('display', 'none');
 
+                    this.$router.push({ name: 'skirts' })
 
                 }
-
                 
-               }
+
+            }
+
     },
         beforeMount() {
 
             this.getuser()
-    },
+            if (localStorage.getItem('users') != '') {
+
+                this.users = localStorage.getItem('users');
+
+                axios
+                    .get('http://localhost/API/api/read_singlecart.php?Username=' + this.users)
+                    .then(response => (this.x = response.data.data.length), console.log(this.x))
+                    .catch(error => console.log(error))
+                    .finally(() => this.loading = false)
+
+            }
+            else if (localStorage.getItem('brand') != '') {
+
+                this.users = localStorage.getItem('brand');
+
+
+            }
+
+
+
+        },
 
 
     };
@@ -207,5 +238,26 @@
         color: #dc3545;
         text-decoration:none;
     }
-
+    .cart{
+        display:flex;
+        flex-direction:column;
+        color:black;
+        margin-top:-20px
+    }
+        .cart:hover {
+            color: #dc3545;
+            text-decoration:none;
+        }
+    .cart span {
+        text-align: center;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+    .cart i{
+        color:black;
+        font-size:30px
+    }
+        .cart i:hover {
+            color: #dc3545;
+        }
 </style>

@@ -1,64 +1,150 @@
 <template>
     <div class="main">
         <div class="sidebar">
-            <router-link to="/profile" >
+            <router-link to="/profile">
                 <a href="#" class="active">
                     <i><font-awesome-icon :icon="['fas', 'user']" /></i>
                     My account
                 </a>
             </router-link>
             <br><hr>
-            <router-link to="/orders" >
-            <a href="">
-                <i><font-awesome-icon :icon="['fas', 'box-open']" /></i>
-                My Orders
-            </a>
+            <router-link to="/orders">
+                <a href="">
+                    <i><font-awesome-icon :icon="['fas', 'box-open']" /></i>
+                    My Orders
+                </a>
             </router-link>
             <br>
             <hr>
-            <router-link to="/personalinfo" >
-            <a href="#" class="personal">
-                <i><font-awesome-icon :icon="['fas', 'user-edit']" /></i>
-                Personal info
-            </a>
+            <router-link to="/personalinfo">
+                <a href="#" class="personal">
+                    <i><font-awesome-icon :icon="['fas', 'user-edit']" /></i>
+                    Personal info
+                </a>
             </router-link>
-            <br>
-            <router-link to="/changepassword" >
-            <a href="#">
-                <i><font-awesome-icon :icon="['fas', 'lock']" /></i>
-                Change Password
-            </a>
+            <br />
+            <hr v-if="count==11" />
+            <router-link to="/addproduct" v-if="count==11">
+                <a href="#" class="personal">
+                    <i><font-awesome-icon :icon="['fas', 'user-edit']" /></i>
+                    Add product
+                </a>
             </router-link>
+            <!--
+        <router-link to="/changepassword" >
+        <a href="#">
+            <i><font-awesome-icon :icon="['fas', 'lock']" /></i>
+            Change Password
+        </a>
+        </router-link>-->
             <br><hr>
-            <button  @click="logout();">
+            <a @click="logout();">
                 <i><font-awesome-icon :icon="['fas', 'door-open']" /></i>
                 Sign out
-            </button>
+            </a>
         </div>
-        <div class="mainsection" v-if="all_users">
-            
-            <h5 class="one">
-                User Name: {{all_users.username}}
-                <span>
+        <div class="mainsection" v-if="count==10">
 
-                </span>
-            </h5>
-            <h5 class="two">Email:
+            <h5  class="one">
+                User Name:
                 <span>
-                    sim.rowan.essam@alexu.edu.eg
+                    {{x.username}}
+                </span>
+            </h5>
+
+
+            <h5  class="two">
+                First Name:
+                <span>
+                    {{x.firstname}}
+                </span>
+            </h5>
+
+            <h5  class="two">
+                Last Name:
+                <span>
+                    {{x.lastname}}
+                </span>
+            </h5>
+            <br />
+            <h5 class="two">
+                Email:
+                <span>
+                    {{x.email}}
+                </span>
+            </h5>
+
+           
+
+            <h5  class="two">
+                Your Address
+                <span>
+                    {{x.address}}
                 </span>
             </h5>
             <br>
-            <!-- <router-link to="/personalinfo">
-                <a href="" class="edit">Edit</a>
-            </router-link> -->
-            <a class="edit">Edit</a>
-            
-            
-            <hr>
-            <h4>Your Address</h4>
-            <a href="">Add new address</a>
-            <br>
+            <h5 class="two">
+                Age:
+                <span>
+                    {{x.age}}
+                </span>
+            </h5>
+            <br />
+            <h5 class="two">
+                Phone:
+                <span>
+                    {{x.phone}}
+                </span>
+            </h5>
+            <br />
+            <button @click="goto()" class="edit">Edit</button>
+
+
+
+
+        </div>
+
+        <div class="mainsection" v-if="count==11">
+
+           
+
+            <h5 class="one" >
+                Brand Name:
+                <span>
+                    {{x.name}}
+                </span>
+            </h5>
+
+           
+            <br />
+            <h5 class="two" >
+                Email:
+                <span>
+                    {{x.email}}
+                </span>
+            </h5>
+
+            <h5 class="one">
+                About Brand:
+                <span>
+                    {{x.about}}
+                </span>
+            </h5>
+
+          
+           
+            <h5 class="two" >
+                Phone:
+                <span>
+                    {{x.phone}}
+                </span>
+            </h5>
+            <br />
+            <button @click="goto()" class="edit">Edit</button>
+
+
+
+
         </div>
     </div>
 </template>
@@ -72,36 +158,78 @@
             return {
                 users: "",
                 loading: false,
-                all_users: null
+                x: null,
+                count:0,
+             
 
             }
         },
-        created() {
-  
-            this.mounted()
-        },
+       
+
         methods: {
             logout: function () {
                 this.loading = true;
                 localStorage.setItem('users',"")
-
+                localStorage.setItem('brand', "")
+                this.count = 0;
                 this.$router.push({ name: 'Home' })
             },
+            goto: function () {
 
-            mounted() {
-                this.loading = true;
-            
+                this.$router.push({ name: 'personalinfo' })
+
+            },
+         
+           
+        },
+       
+        beforeMount() {
+
+            this.loading = true;
+            var u = localStorage.getItem('users')
+
+            var p = localStorage.getItem('brand')
+            console.log(u)
+            if (u == '') {
                 axios
-                    .get('http://localhost/API/api/read-single.php?User_Name=' + localStorage.getItem('users'))
-                    .then(response => (this.all_users = response.data))
+                    .get('http://localhost/API/api/read_singleebrand.php?Name=' + p)
+                    .then(response => (console.log(response.data),
+                        this.x = response.data,
+                        console.log(this.x)),
+                       
+                    )
+
+
+                    .catch(error => console.log(error))
+                    .finally(() => this.loading = false)
+                this.count = 11;
+            }
+            else{
+
+                axios
+                    .get('http://localhost/API/api/read_single.php?User_Name=' + u)
+                    .then(response => (console.log(response.data),
+                        this.x = response.data,
+                        console.log(this.x))
+                    )
+
+
+
+
                     .catch(error => console.log(error))
                     .finally(() => this.loading = false)
 
+                this.count = 10
+
+
+
+               
             }
+            console.log(this.count)
+        },
+
+
     }
-
-
-    };
 
 
 </script>
@@ -188,4 +316,16 @@ text-align: left;
 .main .mainsection label{
     padding-left: 100px;
 }
+    .edit {
+        margin-left:40px;
+        text-align: center;
+        background-color: #fadcda;
+        color: #000;
+        width: 90%;
+        height: 40px;
+        font-size: 20px;
+    }
+        .edit:hover {
+            background-color: #dc3545;
+        }
 </style>

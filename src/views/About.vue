@@ -129,6 +129,7 @@
                 axios
                     .get('http://localhost/API/api/read_single.php?User_Name=' + this.input1.username)
                     .then(response => (this.all_users = response.data),
+                        console.log(this.all_users)
 
                     )
                     .catch(error => console.log(error))

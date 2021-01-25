@@ -1,154 +1,59 @@
 <template>
-    <div>
+    <div class="con">
         <div class="top">
             <h1>Welcome to VTP shop</h1>
             <img class="d-block w-90 imgg" src="../assets/slider.jpg">
         </div>
 
-        <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-            <div id="slider" class="carousel-inner">
-
-                <div class="content carousel-item active">
-
-                </div>
-                <div class="content carousel-item">
-                    <img class="d-block w-90 imgg" src="../assets/d-2.png" alt="Second slide">
-                </div>
-
-                <div class="content carousel-item">
-                    <img class="d-block w-90 imgg" src="../assets/79b1fccd-6714-40e0-9430-dae4a42baacb.jpg" alt="Third slide">
-                </div>
-
+     
+        <router-link to="/brands">
+            <div class="create-brand">
+                <button class="brandBtn"><span class="noselect">Create Your Brand</span><div id="circle"></div></button>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-
-        </div> -->
-        <div class="create-brand">
-            <button><span class="noselect">Create Your Brand</span><div id="circle"></div></button>
-        </div>
+        </router-link>
         <br><br>
         <h1 class="text-center text-light head"><strong>Brands</strong></h1>
         <div class="container c">
             <div class="row">
-                <div class="col-md-4">
+                
+                
+                
+                <div class="col-md-4"  v-for="brand in all_brands.slice(0,6)" v-bind:key="brand">
                     <hr>
                     <div class="profile-card-6">
-                        <img src="../assets/fashion-logo-design.jpg" class="img img-responsive">
-                        <div class="profile-name">
-                            Logo
-                        </div>
-                        <div class="profile-position">Dresses</div>
+
+                            <img  class="img img-responsive" :src="require(`../assets/${brand.logo}`)">
+                            <div class="profile-name">
+                             {{brand.name}}
+                            </div>
                         <div class="profile-overview">
                             <div class="row text-center">
 
                                 <div class="col-s-4">
-                                    <h3>35</h3>
-                                    <p>Folowers</p>
-                                </div>
-                                <div class="col-s-4">
-                                    <h3 class="rate">
-                                        <i><font-awesome-icon :icon="['fas', 'star']" checked /></i>
-                                        <i><font-awesome-icon :icon="['fas', 'star']" checked /></i>
-                                        <i><font-awesome-icon :icon="['fas', 'star']" checked /></i>
-                                        <i><font-awesome-icon :icon="['fas', 'star']" /></i>
-                                        <i><font-awesome-icon :icon="['fas', 'star']" /></i>
+                                    <h3>About</h3>
+                                    <p>{{brand.about}}</p>
 
-                                    </h3>
-                                    <p>Rate</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <hr>
-                    <div class="profile-card-6">
-                        <img src="../assets/Elza-Sofie-Fashion-Logo.png" class="img img-responsive">
-                        <div class="profile-name">
-                            fashion logo
-                        </div>
-                        <div class="profile-position">Clothes</div>
-                        <div class="profile-overview">
-
-                            <div class="row text-center">
-
-                                <div class="col-s-4">
-                                    <h3>35</h3>
-                                    <p>Folowers</p>
-                                </div>
-                                <div class="col-s-4">
-                                    <h3 class="rate">
-                                        <i><font-awesome-icon :icon="['fas', 'star']" checked variant="warning" /></i>
-                                        <i><font-awesome-icon :icon="['fas', 'star']" checked /></i>
-                                        <i><font-awesome-icon :icon="['fas', 'star']" checked /></i>
-                                        <i><font-awesome-icon :icon="['fas', 'star']" /></i>
-                                        <i><font-awesome-icon :icon="['fas', 'star']" /></i>
-
-                                    </h3>
-                                    <p>Rate</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <hr>
-                    <div class="profile-card-6">
-                        <img src="../assets/Evellon-Boutique-Fashion-Logo.png" class="img img-responsive">
-                        <div class="profile-name">
-                            fashion logo
-                        </div>
-                        <div class="profile-position">Clothes</div>
-                        <div class="profile-overview">
-
-                            <div class="row text-center">
-
-                                <div class="col-s-4">
-                                    <h3>35</h3>
-                                    <p>Folowers</p>
-                                </div>
-                                <div class="col-s-4">
-                                    <h3 class="rate">
-                                        <i><font-awesome-icon :icon="['fas', 'star']" checked variant="warning" /></i>
-                                        <i><font-awesome-icon :icon="['fas', 'star']" checked /></i>
-                                        <i><font-awesome-icon :icon="['fas', 'star']" checked /></i>
-                                        <i><font-awesome-icon :icon="['fas', 'star']" /></i>
-                                        <i><font-awesome-icon :icon="['fas', 'star']" /></i>
-
-                                    </h3>
-                                    <p>Rate</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+        <div @click="gotodress()">
         <h1 class="text-light head">Dresses</h1>
 
         <div class="row  container1 c">
             <!-- Card -->
-            <div class="card promoting-card">
+            <div class="card promoting-card" v-for="dress in all_dresses.slice(0,4)" v-bind:key="dress">
 
                 <!-- Card content -->
                 <div class="card-body flex-row">
                     <div>
 
                         <!-- Title -->
-                        <h4 class="card-title font-weight-bold mb-2">short red dress</h4>
+                        <h4 class="card-title font-weight-bold mb-2">{{dress.name}}</h4>
 
                     </div>
 
@@ -156,7 +61,8 @@
 
                 <!-- Card image -->
                 <div class="view overlay">
-                    <img class="card-img-top rounded-0" src="../assets/dress.jpeg" alt="Card image cap">
+                    <img class="card-img-top rounded-0" 
+                :src="require(`../assets/${dress.description}`)"  alt="Card image cap">
                     <a href="#!">
                         <div class="mask rgba-white-slight"></div>
                     </a>
@@ -167,121 +73,43 @@
 
                     <div class="collapse-content">
                         <p class="card-text collapse" id="collapseContent">Recently, we added several exotic new dishes to our restaurant menu. They come from countries such as Mexico, Argentina, and Spain. Come to us, have some delicious wine and enjoy our juicy meals from around the world.</p>
-                        <i><font-awesome-icon :icon="['fas','heart']" class="icon1" /></i>
-                        <i><font-awesome-icon :icon="['fas', 'share-alt']" class="icon" /></i>
+
 
                     </div>
                 </div>
 
             </div>
-
-            <div class="card">
-
-                <div class="card-body flex-row">
-                    <div>
-                        <h4 class="card-title font-weight-bold mb-2">Dresses</h4>
-                    </div>
-
-                </div>
-                <div class="view overlay">
-                    <img class="card-img-top rounded-10" src="../assets/d2.jpg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-
-                <!-- Card content -->
-                <div class="card-body">
-
-                    <div class="collapse-content">
-
-                        <!-- Text -->
-                        <p class="card-text collapse" id="collapseContent">Recently, we added several exotic new dishes to our restaurant menu. They come from countries such as Mexico, Argentina, and Spain. Come to us, have some delicious wine and enjoy our juicy meals from around the world.</p>
-                        <i><font-awesome-icon :icon="['fas','heart']" class="icon1" /></i>
-                        <i><font-awesome-icon :icon="['fas', 'share-alt']" class="icon" /></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-            <!-- Card -->
-            <div class="card">
-
-                <div class="card-body  flex-row">
-                    <div>
-                        <h4 class="card-title font-weight-bold mb-2">Dresses</h4>
-                    </div>
-
-                </div>
-                <div class="view overlay">
-                    <img class="card-img-top rounded-10" src="../assets/d2.jpg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-
-                <!-- Card content -->
-                <div class="card-body">
-
-                    <div class="collapse-content">
-
-                        <!-- Text -->
-                        <p class="card-text collapse" id="collapseContent">Recently, we added several exotic new dishes to our restaurant menu. They come from countries such as Mexico, Argentina, and Spain. Come to us, have some delicious wine and enjoy our juicy meals from around the world.</p>
-                        <i><font-awesome-icon :icon="['fas','heart']" class="icon1" /></i>
-                        <i><font-awesome-icon :icon="['fas', 'share-alt']" class="icon" /></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Card -->
-            <div class="card">
-
-                <div class="card-body  flex-row">
-                    <div>
-                        <h4 class="card-title font-weight-bold mb-2">Dresses</h4>
-                    </div>
-
-                </div>
-                <div class="view overlay">
-                    <img class="card-img-top rounded-10" src="../assets/d2.jpg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-                <div class="card-body">
-
-                    <div class="collapse-content">
-                        <p class="card-text collapse" id="collapseContent"></p>
-                        <i><font-awesome-icon :icon="['fas','heart']" class="icon1" /></i>
-                        <i><font-awesome-icon :icon="['fas', 'share-alt']" class="icon" /></i>
-                    </div>
-                </div>
-            </div>
+            <br />
+            <button class="btn font-weight-bold mb-2"> See More...</button>
         </div>
-        <h1 class="text-light head">T-shirt</h1>
+        </div>
+        <div @click="gotoskirt()">
+
+        <h1 class="text-light head">Skirt</h1>
 
         <div class="row  container1 c">
-            <!-- Card -->
-            <div class="card promoting-card">
+            <!-- Card dy el loop 3lehaa-->
+            <div class="card promoting-card" v-for="user in all_users.slice(0,4)" v-bind:key="user">
 
                 <!-- Card content -->
                 <div class="card-body flex-row">
                     <div>
 
                         <!-- Title -->
-                        <h4 class="card-title font-weight-bold mb-2">short red dress</h4>
+                        <h4 class="card-title font-weight-bold mb-2">{{user.name}}</h4>
 
                     </div>
-
                 </div>
 
-                <!-- Card image -->
                 <div class="view overlay">
-                    <img class="card-img-top rounded-0" src="../assets/t1.jpeg" alt="Card image cap">
+
+
+                    <!--<img src="https://drive.google.com/uc?id=1f2nURvv_aVv-jisNJf_wsSoxoGw06PE6">
+    -->
+                    <!-- <img class="card-img-top rounded-0" src="../assets/t1.jpeg" alt="Card image cap">--->
+                  
+
+                      <img class="card-img-top rounded-0" :src="require(`../assets/${user.description}`)" alt="Card image cap">
                     <a href="#!">
                         <div class="mask rgba-white-slight"></div>
                     </a>
@@ -292,100 +120,17 @@
 
                     <div class="collapse-content">
                         <p class="card-text collapse" id="collapseContent">Recently, we added several exotic new dishes to our restaurant menu. They come from countries such as Mexico, Argentina, and Spain. Come to us, have some delicious wine and enjoy our juicy meals from around the world.</p>
-                        <i><font-awesome-icon :icon="['fas','heart']" class="icon1" /></i>
-                        <i><font-awesome-icon :icon="['fas', 'share-alt']" class="icon" /></i>
 
-                    </div>
-                </div>
 
-            </div>
-
-            <div class="card">
-
-                <div class="card-body flex-row">
-                    <div>
-                        <h4 class="card-title font-weight-bold mb-2">Dresses</h4>
-                    </div>
-
-                </div>
-                <div class="view overlay">
-                    <img class="card-img-top rounded-10" src="../assets/t2.jpeg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-
-                <!-- Card content -->
-                <div class="card-body">
-
-                    <div class="collapse-content">
-
-                        <!-- Text -->
-                        <p class="card-text collapse" id="collapseContent">Recently, we added several exotic new dishes to our restaurant menu. They come from countries such as Mexico, Argentina, and Spain. Come to us, have some delicious wine and enjoy our juicy meals from around the world.</p>
-                        <i><font-awesome-icon :icon="['fas','heart']" class="icon1" /></i>
-                        <i><font-awesome-icon :icon="['fas', 'share-alt']" class="icon" /></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-            <!-- Card -->
-            <div class="card">
-
-                <div class="card-body  flex-row">
-                    <div>
-                        <h4 class="card-title font-weight-bold mb-2">Dresses</h4>
-                    </div>
-
-                </div>
-                <div class="view overlay">
-                    <img class="card-img-top rounded-10" src="../assets/t3.jpeg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-
-                <!-- Card content -->
-                <div class="card-body">
-
-                    <div class="collapse-content">
-
-                        <!-- Text -->
-                        <p class="card-text collapse" id="collapseContent">Recently, we added several exotic new dishes to our restaurant menu. They come from countries such as Mexico, Argentina, and Spain. Come to us, have some delicious wine and enjoy our juicy meals from around the world.</p>
-                        <i><font-awesome-icon :icon="['fas','heart']" class="icon1" /></i>
-                        <i><font-awesome-icon :icon="['fas', 'share-alt']" class="icon" /></i>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <!-- Card -->
-            <div class="card">
-
-                <div class="card-body  flex-row">
-                    <div>
-                        <h4 class="card-title font-weight-bold mb-2">Dresses</h4>
-                    </div>
-
-                </div>
-                <div class="view overlay">
-                    <img class="card-img-top rounded-10" src="../assets/d2.jpg" alt="Card image cap">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-                <div class="card-body">
-
-                    <div class="collapse-content">
-                        <p class="card-text collapse" id="collapseContent"></p>
-                        <i><font-awesome-icon :icon="['fas','heart']" class="icon1" /></i>
-                        <i><font-awesome-icon :icon="['fas', 'share-alt']" class="icon" /></i>
                     </div>
                 </div>
             </div>
+
+            <br />
+            <button class="btn font-weight-bold mb-2"> See More...</button>
+        </div>
+
+         
         </div>
 
 
@@ -406,16 +151,77 @@
 <script>
     // @ is an alias to /src
 
+    import axios from "axios";
 
     export default {
         name: "Home",
-        components: {
+        data() {
+            return{
+                all_users: null,
+                all_brands: null,
+                all_dresses:null,
+            }
+        },
+        methods: {
+            gotoskirt: function () {
+                this.$router.push({name :'skirts'})
+            },
+            gotodress: function () {
+                this.$router.push({ name: 'dresses' })
+            },
 
+
+        },
+        beforeMount() {
+            this.loading = true;
+            axios
+                .get('http://localhost/API/api/read_Category.php?Category_id=2')
+                .then(response => (this.all_users=response.data.data),console.log(this.all_users))
+                .catch(error => console.log(error))
+                .finally(() => this.loading = false)
+        
+            axios
+                .get('http://localhost/API/api/readbrand.php')
+                .then(response => (this.all_brands = response.data.data), console.log(this.all_brands))
+                .catch(error => console.log(error))
+                .finally(() => this.loading = false)
+
+            axios
+                .get('http://localhost/API/api/read_Category.php?Category_id=9')
+                .then(response => (this.all_dresses = response.data.data), console.log(this.all_dresses))
+                .catch(error => console.log(error))
+                .finally(() => this.loading = false)
         },
     };
 </script>
 
 <style scoped>
+    .btn {
+        margin: auto;
+        border: none;
+        outline: 0;
+        padding: 12px;
+        color: white;
+        border-radius: 25px;
+        background-color: #ea6b62;
+        text-align: center;
+        cursor: pointer;
+        width: 50%;
+        font-size: 18px;
+        margin-left: 250px;
+        margin-top: 25px;
+    }
+    .btn:hover {
+        opacity: 0.7;
+        color:black;
+    }
+
+
+
+    .con{
+        width:100%
+
+    }
     .top {
         display: flex;
         flex-direction: column;
@@ -673,6 +479,10 @@
         padding-left: 200px;
     }
 
+    .brandBtn:focus {
+        outline: 0px;
+    }
+
     .head {
         background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
         background-size: 400% 400%;
@@ -681,6 +491,7 @@
         width: 80%;
         margin: auto;
         text-align: center;
+       
     }
 
     .c {
